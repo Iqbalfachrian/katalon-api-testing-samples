@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="API Test" time="41.413" tests="4" failures="0" errors="0">
+   <testsuite name="API Test" tests="4" failures="0" errors="0" time="41.413" skipped="0" timestamp="2023-06-07 11:00:25" hostname="Dell - Iqbal" id="Test Suites/API Test">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="C:\\Users\\Dell\\Katalon Studio\\Bionic Teknologi Indonesia\\Reports\\20230607_105956\\API Test\\20230607_105956"/>
+         <property name="logFiles" value="C:\\Users\\Dell\\Katalon Studio\\Bionic Teknologi Indonesia\\Reports\\20230607_105956\\API Test\\20230607_105956\\execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="Dell - Iqbal"/>
+         <property name="hostAddress" value="192.168.1.6"/>
+         <property name="os" value="Windows 10 64bit"/>
+         <property name="katalonVersion" value="8.6.0.208"/>
+      </properties>
+      <testcase name="Test Cases/Create User" time="24.718" classname="Test Cases/Create User" status="PASSED">
+         <system-out><![CDATA[2023-06-07 11:00:28 - [TEST_CASE][PASSED] - Test Cases/Create User: Test Cases/Create User
+
+2023-06-07 11:00:31 - [TEST_STEP][PASSED] - createUser = findTestObject("Object Repository/createUser"): null
+
+2023-06-07 11:00:33 - [TEST_STEP][PASSED] - response = sendRequest(createUser): Send request successfully
+
+2023-06-07 11:00:50 - [MESSAGE][INFO] - HAR: C:\Users\Dell\Katalon Studio\Bionic Teknologi Indonesia\Reports\20230607_105956\API Test\20230607_105956\requests\main\0.har
+
+2023-06-07 11:00:51 - [MESSAGE][PASSED] - Send request successfully
+
+2023-06-07 11:00:51 - [TEST_STEP][PASSED] - verifyResponseStatusCode(response, 201): Verify response status code successfully
+
+2023-06-07 11:00:51 - [MESSAGE][PASSED] - Verify response status code successfully
+
+2023-06-07 11:00:51 - [TEST_STEP][PASSED] - verifyElementPropertyValue(response, "first_name", "iqbal"): Verify element property value successfully
+
+2023-06-07 11:00:52 - [MESSAGE][PASSED] - Verify element property value successfully
+
+2023-06-07 11:00:52 - [TEST_STEP][PASSED] - verifyElementPropertyValue(response, "last_name", "fachrian"): Verify element property value successfully
+
+2023-06-07 11:00:52 - [MESSAGE][PASSED] - Verify element property value successfully
+
+2023-06-07 11:00:52 - [TEST_STEP][PASSED] - verifyElementPropertyValue(response, "job", "QA Engineer"): Verify element property value successfully
+
+2023-06-07 11:00:52 - [MESSAGE][PASSED] - Verify element property value successfully]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/Get User" time="4.624" classname="Test Cases/Get User" status="PASSED">
+         <system-out><![CDATA[2023-06-07 11:00:52 - [TEST_CASE][PASSED] - Test Cases/Get User: Test Cases/Get User
+
+2023-06-07 11:00:56 - [TEST_STEP][PASSED] - getUser = findTestObject("Object Repository/getUser"): null
+
+2023-06-07 11:00:57 - [TEST_STEP][PASSED] - response = sendRequest(getUser): Send request successfully
+
+2023-06-07 11:00:57 - [MESSAGE][INFO] - HAR: C:\Users\Dell\Katalon Studio\Bionic Teknologi Indonesia\Reports\20230607_105956\API Test\20230607_105956\requests\main\1.har
+
+2023-06-07 11:00:57 - [MESSAGE][PASSED] - Send request successfully
+
+2023-06-07 11:00:57 - [TEST_STEP][PASSED] - verifyResponseStatusCode(response, 200): Verify response status code successfully
+
+2023-06-07 11:00:57 - [MESSAGE][PASSED] - Verify response status code successfully
+
+2023-06-07 11:00:57 - [TEST_STEP][PASSED] - jsonResponse = JsonSlurper().parseText(response.getResponseText()): null
+
+2023-06-07 11:00:57 - [TEST_STEP][PASSED] - assert id == 10: null
+
+2023-06-07 11:00:57 - [TEST_STEP][PASSED] - assert email == "byron.fields@reqres.in": null
+
+2023-06-07 11:00:57 - [TEST_STEP][PASSED] - assert first_name == "Byron": null
+
+2023-06-07 11:00:57 - [TEST_STEP][PASSED] - assert last_name == "Fields": null]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/Update User" time="5.379" classname="Test Cases/Update User" status="PASSED">
+         <system-out><![CDATA[2023-06-07 11:00:57 - [TEST_CASE][PASSED] - Test Cases/Update User: Test Cases/Update User
+
+2023-06-07 11:01:01 - [TEST_STEP][PASSED] - updateUser = findTestObject("Object Repository/updateUser"): null
+
+2023-06-07 11:01:02 - [TEST_STEP][PASSED] - response = sendRequest(updateUser): Send request successfully
+
+2023-06-07 11:01:02 - [MESSAGE][INFO] - HAR: C:\Users\Dell\Katalon Studio\Bionic Teknologi Indonesia\Reports\20230607_105956\API Test\20230607_105956\requests\main\2.har
+
+2023-06-07 11:01:02 - [MESSAGE][PASSED] - Send request successfully
+
+2023-06-07 11:01:02 - [TEST_STEP][PASSED] - verifyResponseStatusCode(response, 200): Verify response status code successfully
+
+2023-06-07 11:01:02 - [MESSAGE][PASSED] - Verify response status code successfully
+
+2023-06-07 11:01:02 - [TEST_STEP][PASSED] - jsonResponse = JsonSlurper().parseText(response.getResponseText()): null
+
+2023-06-07 11:01:02 - [TEST_STEP][PASSED] - assert name == "Iqbal Fachrian": null
+
+2023-06-07 11:01:02 - [TEST_STEP][PASSED] - assert job == "SR. QA Engineer": null
+
+2023-06-07 11:01:02 - [TEST_STEP][PASSED] - assert email == "iqbalfachrian@gmail.com": null]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/Delete User" time="4.057" classname="Test Cases/Delete User" status="PASSED">
+         <system-out><![CDATA[2023-06-07 11:01:03 - [TEST_CASE][PASSED] - Test Cases/Delete User: Test Cases/Delete User
+
+2023-06-07 11:01:06 - [TEST_STEP][PASSED] - deleteUser = findTestObject("Object Repository/deleteUser"): null
+
+2023-06-07 11:01:06 - [TEST_STEP][PASSED] - response = sendRequest(deleteUser): Send request successfully
+
+2023-06-07 11:01:07 - [MESSAGE][INFO] - HAR: C:\Users\Dell\Katalon Studio\Bionic Teknologi Indonesia\Reports\20230607_105956\API Test\20230607_105956\requests\main\3.har
+
+2023-06-07 11:01:07 - [MESSAGE][PASSED] - Send request successfully
+
+2023-06-07 11:01:07 - [TEST_STEP][PASSED] - verifyResponseStatusCode(response, 204): Verify response status code successfully
+
+2023-06-07 11:01:07 - [MESSAGE][PASSED] - Verify response status code successfully]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2023-06-07 11:00:25 - [TEST_SUITE][PASSED] - API Test: Test Cases/Delete User]]></system-out>
+      <system-err><![CDATA[]]></system-err>
+   </testsuite>
+</testsuites>

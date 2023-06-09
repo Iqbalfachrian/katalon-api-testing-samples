@@ -27,6 +27,8 @@ This project contains examples of API testing using Katalon Studio with POST, GE
 3. Run the test cases as per your requirements.
 4. View the test results and reports within Katalon Studio.
 
+**Note:** I have moved to a new branch named `main`. This branch will be used to develop new features and fix problems. Please refer to this branch for the latest changes.
+
 ## Contribution
 
 Open contributions are welcome for improving this project. If you find any issues or have suggestions for improvement, please create an "Issue" or "Pull Request" on this GitHub repository.

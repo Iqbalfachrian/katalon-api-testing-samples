@@ -1,8 +1,8 @@
 import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
-
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
+
 
 import com.kms.katalon.core.annotation.Keyword
 import com.kms.katalon.core.checkpoint.Checkpoint
@@ -19,7 +19,7 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 
 import internal.GlobalVariable
-import io.cucumber.datatable.DataTable
+
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.By
@@ -37,36 +37,43 @@ import com.kms.katalon.core.util.KeywordUtil
 
 import com.kms.katalon.core.webui.exception.WebElementNotFoundException
 
-import cucumber.api.java.en.And
+
 import cucumber.api.java.en.Given
-import cucumber.api.java.en.When
-import groovy.json.JsonSlurper
 import cucumber.api.java.en.Then
+import cucumber.api.java.en.When
+import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords
 
 
-class GetSteps {
-	@Given("I want to retrieve user information")
-	def givenRetrieveUserInfo() {
+class POSTSteps {
+	@Given("I want to create a new user")
+	def givenCreateNewUser() {
 	}
 
-	@When("I send a GET request to '{string}'")
-	def whenSendGetRequest(String url) {
-		def getUser = findTestObject('Object Repository/getUser')
-		getUser.setRestUrl(url)
+	@When("I send a POST request to reqres.in")
+	def whenSendPostRequest() {
+    def requestBody = [:]
+    requestBody["name"] = "Iqbal Fachrian"
+    requestBody["job"] = "SR. QA Engineer"
 
-		def response = WS.sendRequest(getUser)
-		GlobalVariable.response = response
-	}
+    def postUser = findTestObject('Object Repository/postUser')
 
-	@Then("the response body should contain the following data:")
-	def thenVerifyResponseBody(DataTable dataTable) {
-		def response = GlobalVariable.response
-		def jsonResponse = new JsonSlurper().parseText(response.getResponseText())
+    if (postUser != null) {
+        postUser.setRestRequestMethod('POST')
+        postUser.setRestRequestBody(JsonOutput.toJson(requestBody))
 
-		def expectedData = dataTable.asMaps(String, String).get(0)
+        def response = WS.sendRequest(postUser)
 
-		expectedData.each { key, value ->
-			assert jsonResponse[key] == value
-		}
-	}
+        GlobalVariable.response = response
+    } else {
+        println "Object 'postUser' not found in Object Repository."
+    }
 }
+
+		@Then("the response status code should be ok")
+    	def thenVerifyPostStatusCode() {
+			def response = GlobalVariable.response
+			assert response.getStatusCode() == 200
+    }
+}
+
+

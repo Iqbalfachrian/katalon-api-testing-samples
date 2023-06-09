@@ -19,7 +19,6 @@ import org.openqa.selenium.Keys as Keys
 
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 import groovy.json.JsonSlurper
-
 def updateUser = findTestObject('Object Repository/updateUser')
 
 def response = WS.sendRequest(updateUser)

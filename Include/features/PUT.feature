@@ -1,4 +1,4 @@
-#Author: iqbalf.dev@gmail.com
+#Author: your.email@your.domain.com
 #Keywords Summary :
 #Feature: List of scenarios.
 #Scenario: Business rule through list of steps with arguments.
@@ -16,18 +16,16 @@
 #""
 ## (Comments)
 #Sample Feature Definition Template
-@tag
-Feature: API TESTING
+
+@tag1
+Feature: PUT API TESTING
   I want to use this template for my feature file
 
-  @tag1
-  Scenario: Testing API GET Method
-    Given I want to retrieve user information
-    When I send a GET request to 'https://reqres.in/api/users/10'
-    Then the response body should contain the following data:
-      | key | value |
-			| id | 2 |
-			| email | janet.weaver@reqres.in |
-			| first_name | Janet |
-			| last_name | Weaver |
-			| avatar | https://reqres.in/img/faces/2-image.jpg |
+  @tag2
+  Scenario: Testing API PUT Method
+    Given I want to update a user
+    When I send a PUT request to 'https://reqres.in/api/users/2' with the following data:
+      | key         | value              |
+      | name        | Iqbal Fachrian     |
+      | job         | Senior QA Engineer |
+    Then the PUT response status code should be 200

@@ -1,8 +1,8 @@
 {
-  "keywordFileContentHash": "28663C0811FB60C53E2B955689543C84",
+  "keywordFileContentHash": "1BBB1E460F46E2D1B58628918FDDD30E",
   "keywordClasses": [
     {
-      "name": "GetSteps",
+      "name": "DeleteSteps",
       "keywordMethods": []
     }
   ],

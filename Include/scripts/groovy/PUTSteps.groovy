@@ -1,5 +1,4 @@
 import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
-
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
@@ -19,7 +18,7 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 
 import internal.GlobalVariable
-import io.cucumber.datatable.DataTable
+
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.By
@@ -37,36 +36,37 @@ import com.kms.katalon.core.util.KeywordUtil
 
 import com.kms.katalon.core.webui.exception.WebElementNotFoundException
 
-import cucumber.api.java.en.And
 import cucumber.api.java.en.Given
-import cucumber.api.java.en.When
-import groovy.json.JsonSlurper
 import cucumber.api.java.en.Then
+import cucumber.api.java.en.When
+import groovy.json.JsonOutput
+import io.cucumber.datatable.DataTable
 
 
-class GetSteps {
-	@Given("I want to retrieve user information")
-	def givenRetrieveUserInfo() {
+class PUTSteps {
+	@Given("I want to update a user")
+	def givenUpdateUser() {
 	}
 
-	@When("I send a GET request to '{string}'")
-	def whenSendGetRequest(String url) {
-		def getUser = findTestObject('Object Repository/getUser')
-		getUser.setRestUrl(url)
+	@When("I send a PUT request to '(.*)' with the following data:")
+	def whenSendPutRequest(String url, DataTable dataTable) {
+		def requestData = dataTable.asMap(String, String)
+		def requestBody = [:]
+		requestBody["name"] = requestData["name"]
+		requestBody["job"] = requestData["job"]
 
-		def response = WS.sendRequest(getUser)
+		def putUser = findTestObject('Object Repository/putUser')
+		putUser.setRestRequestMethod('PUT')
+		putUser.setRestUrl(url)
+		putUser.setRestRequestBody(JsonOutput.toJson(requestBody))
+
+		def response = WS.sendRequest(putUser)
 		GlobalVariable.response = response
 	}
 
-	@Then("the response body should contain the following data:")
-	def thenVerifyResponseBody(DataTable dataTable) {
+	@Then("the PUT response status code should be {int}")
+	def thenVerifyPutStatusCode(int expectedStatusCode) {
 		def response = GlobalVariable.response
-		def jsonResponse = new JsonSlurper().parseText(response.getResponseText())
-
-		def expectedData = dataTable.asMaps(String, String).get(0)
-
-		expectedData.each { key, value ->
-			assert jsonResponse[key] == value
-		}
+		assert response.getStatusCode() == expectedStatusCode
 	}
 }

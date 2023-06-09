@@ -1,5 +1,4 @@
 import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
-
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
@@ -19,7 +18,7 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 
 import internal.GlobalVariable
-import io.cucumber.datatable.DataTable
+
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.By
@@ -39,34 +38,30 @@ import com.kms.katalon.core.webui.exception.WebElementNotFoundException
 
 import cucumber.api.java.en.And
 import cucumber.api.java.en.Given
-import cucumber.api.java.en.When
-import groovy.json.JsonSlurper
 import cucumber.api.java.en.Then
+import cucumber.api.java.en.When
 
 
-class GetSteps {
-	@Given("I want to retrieve user information")
-	def givenRetrieveUserInfo() {
+class DeleteSteps {
+	@Given("I want to delete a user")
+	def givenDeleteUser() {
 	}
 
-	@When("I send a GET request to '{string}'")
-	def whenSendGetRequest(String url) {
-		def getUser = findTestObject('Object Repository/getUser')
-		getUser.setRestUrl(url)
+	@When("I send a DELETE request to {string}")
+	def whenSendDeleteRequest(String url) {
+		def deleteUser = ObjectRepository.findTestObject('Object Repository/deleteUser')
 
-		def response = WS.sendRequest(getUser)
+		deleteUser.setRestRequestMethod('DELETE')
+		deleteUser.setRestUrl(url)
+
+		def response = WS.sendRequest(deleteUser)
+
 		GlobalVariable.response = response
 	}
 
-	@Then("the response body should contain the following data:")
-	def thenVerifyResponseBody(DataTable dataTable) {
+	@Then("the DELETE response status code should be {int}")
+	def thenVerifyDeleteStatusCode(int expectedStatusCode) {
 		def response = GlobalVariable.response
-		def jsonResponse = new JsonSlurper().parseText(response.getResponseText())
-
-		def expectedData = dataTable.asMaps(String, String).get(0)
-
-		expectedData.each { key, value ->
-			assert jsonResponse[key] == value
-		}
+		assert response.getStatusCode() == expectedStatusCode
 	}
 }

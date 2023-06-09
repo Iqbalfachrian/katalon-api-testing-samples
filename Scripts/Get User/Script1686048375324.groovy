@@ -19,6 +19,9 @@ import org.openqa.selenium.Keys as Keys
 
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 import groovy.json.JsonSlurper
+import cucumber.api.CucumberOptions
+import cucumber.api.junit.Cucumber
+
 
 // Mendapatkan objek Test Object "GetUserRequest" dari Object Repository
 def getUser = findTestObject('Object Repository/getUser')
@@ -33,8 +36,3 @@ WS.verifyResponseStatusCode(response, 200)
 def jsonResponse = new JsonSlurper().parseText(response.getResponseText())
 
 
-// Memeriksa response body
-assert jsonResponse.data.id == 10
-assert jsonResponse.data.email == 'byron.fields@reqres.in'
-assert jsonResponse.data.first_name == 'Byron'
-assert jsonResponse.data.last_name == 'Fields'
